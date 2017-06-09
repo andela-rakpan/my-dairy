@@ -31,6 +31,12 @@ gem 'jbuilder', '~> 2.5'
 # use pg gem for database
 gem 'pg'
 
+# devise gem for authentication
+gem 'devise'
+
+# use foundation for frontend UI
+gem 'foundation-rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
