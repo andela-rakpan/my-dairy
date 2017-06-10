@@ -1,33 +1,33 @@
-<%= form_for(event) do |f| %>
-  <% if event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+<div class="container">
+  <%= form_for event, html: { class: "comment-form center" } do |f| %>
+    <% if event.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-      <ul>
-      <% event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :category_id %>
-    <%= f.select(:category_id) do %>
-      <% @categories.each do |category| -%>
-        <%= content_tag(:option, category.name, value: category.id) %>
-      <% end %>
+        <ul>
+        <% event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
     <% end %>
 
-  </div>
-
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="row">
+      <%= f.text_area :description, placeholder: "Add Event" %>
+    </div>
+    <div class="row">
+      <div class="medium-3 columns">
+        <div class="actions row">
+          <%= f.submit class: "button" %>
+        </div>
+      </div>
+      <div class="medium-9 columns zero-padding-right">
+        <%= f.select :category_id do %>
+          <% current_user.categories.each do |category| -%>
+            <%= content_tag(:option, category.name, value: category.id) %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

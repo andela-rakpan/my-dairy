@@ -17,3 +17,35 @@
  */
 
 @import "foundation_and_overrides";
+@import 'foundation-icons';
+
+$grey: #555;
+
+// General Styles
+
+.container {
+  padding: 0 4rem 0 4rem;
+}
+
+.center {
+  margin: 0 auto;
+}
+
+.zero-padding-right {
+  padding-right: 0;
+}
+
+.field_with_errors {
+  width: 100%;
+}
+
+// Events styles
+.event-comment {
+  top: .5rem;
+  position: relative;
+  color: $grey;
+}
+  
+.comment-form {
+  width: 40%;
+}

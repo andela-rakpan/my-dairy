@@ -40,6 +40,9 @@ gem 'foundation-rails'
 # use simple_form to render forms
 gem 'simple_form'
 
+# add foundation icons
+gem 'foundation-icons-sass-rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

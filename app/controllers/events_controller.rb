@@ -4,19 +4,18 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all.order(created_at: :desc)
+    @events = get_user_events
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
-    @comments = Comment.where(event_id: @event.id).order(:created_at)
+    @comments = Comment.where(event_id: @event.id).order(created_at: :desc)
   end
 
   # GET /events/new
   def new
     @event = current_user.events.build
-    @categories = Category.all
   end
 
   # GET /events/1/edit
@@ -30,7 +29,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to :events, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -72,5 +71,9 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:description, :category_id)
+    end
+
+    def get_user_events
+      current_user.events.order(created_at: :desc)
     end
 end

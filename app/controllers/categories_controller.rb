@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
 
   # GET /categories
   # GET /categories.json
@@ -74,6 +73,6 @@ class CategoriesController < ApplicationController
     end
 
     def get_user_categories
-      Category.where(user_id: current_user.id)
+      current_user.categories.order(created_at: :desc)
     end
 end
