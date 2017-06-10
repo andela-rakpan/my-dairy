@@ -4,17 +4,19 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.all.order(created_at: :desc)
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    @comments = Comment.where(event_id: @event.id).order(:created_at)
   end
 
   # GET /events/new
   def new
     @event = current_user.events.build
+    @categories = Category.all
   end
 
   # GET /events/1/edit

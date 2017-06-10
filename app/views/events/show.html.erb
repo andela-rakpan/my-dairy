@@ -10,16 +10,18 @@
   <%= @event.category.name %>
 </p>
 
-<h4> <%= @event.comments.count%> <%= 'comment'.pluralize(@event.comments.count) %> </h4>
+<h4> <%= @comments.count%> <%= 'comment'.pluralize(@comments.count) %> </h4>
 
-<% @event.comments.each do |comment| %>
-  <p> <%= comment.comment %> </p>
+<% @comments.each do |comment| %>
+  <p> <%= comment.comment %> 
+      <%= link_to "edit", edit_comment_path(comment) %>
+      <%= link_to "delete", comment, method: :delete %>
+  </p>
+
 <% end %>
 
-<p> Add Comment </p>
-
 <%= simple_form_for Comment.new do |f| %>
-  <%= f.input :comment %>
+  <%= f.input :comment, label: "Add Comment" %>
   <%= hidden_field_tag("comment[event_id]", @event.id) %>
   <%= f.button :submit %>
 <% end %>

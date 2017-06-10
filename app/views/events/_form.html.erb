@@ -18,7 +18,12 @@
 
   <div class="field">
     <%= f.label :category_id %>
-    <%= f.number_field :category_id %>
+    <%= f.select(:category_id) do %>
+      <% @categories.each do |category| -%>
+        <%= content_tag(:option, category.name, value: category.id) %>
+      <% end %>
+    <% end %>
+
   </div>
 
 
