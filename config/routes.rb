@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :comments
+  resources :events
   devise_for :users
   resources :categories
   root to: "index#index", as: "index"

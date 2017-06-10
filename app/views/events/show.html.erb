@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @event.category.name %>
+</p>
+
+<h4> <%= @event.comments.count%> <%= 'comment'.pluralize(@event.comments.count) %> </h4>
+
+<% @event.comments.each do |comment| %>
+  <p> <%= comment.comment %> </p>
+<% end %>
+
+<p> Add Comment </p>
+
+<%= simple_form_for Comment.new do |f| %>
+  <%= f.input :comment %>
+  <%= hidden_field_tag("comment[event_id]", @event.id) %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
