@@ -1,30 +1,54 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+  <div class="row">
+    <div class="card">
+      <div class="card-section">
+        <div class="card-divider">
+          <div>
+            <span class="big"> <%= @event.category.name %> </span>
+          </div>
+          <span class="date-added grey"> Added <%= time_ago_in_words(@event.created_at) %> ago </span>
+        </div>
+      </div>
+      <div class="card-section">
+        <p>
+          <strong>Description:</strong>
+          <%= @event.description %>
+        </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @event.category.name %>
-</p>
+        <p>
+          <strong>Category:</strong>
+          <%= @event.category.name %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <%= form_for Comment.new do |f| %>
+    <%= f.text_field :comment, placeholder: "Comment" %>
+    <%= hidden_field_tag("comment[event_id]", @event.id) %>
+    <%= f.submit "Add Comment", class: "button" %>
+  <% end %>
+  
+  <h4> <%= @comments.count%> <%= 'comment'.pluralize(@comments.count) %> </h4>
 
-<h4> <%= @comments.count%> <%= 'comment'.pluralize(@comments.count) %> </h4>
+  <% @comments.each do |comment| %>
+    <p> 
+        <% comment.comment.split(' ').each do |word| %>
+          <% if uri?(word) %>
+            <a href="<%= word %>" target="_"> <%= word %> </a>
+          <% else %>
+            <%= word %>
+          <% end %>
+        <% end %>
+        &nbsp;
+        <%= link_to '', edit_comment_path(comment), class: "fi-pencil" %> &nbsp;
+        <%= link_to '', comment, class: "fi-x", method: :delete %>
+    </p>
 
-<% @comments.each do |comment| %>
-  <p> <%= comment.comment %> 
-      <%= link_to "edit", edit_comment_path(comment) %>
-      <%= link_to "delete", comment, method: :delete %>
-  </p>
+  <% end %>
 
-<% end %>
 
-<%= simple_form_for Comment.new do |f| %>
-  <%= f.input :comment, label: "Add Comment" %>
-  <%= hidden_field_tag("comment[event_id]", @event.id) %>
-  <%= f.button :submit %>
-<% end %>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+  <%= link_to 'Edit', edit_event_path(@event) %> |
+  <%= link_to 'Back', events_path %>
+</div>

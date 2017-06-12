@@ -39,13 +39,28 @@ $grey: #555;
   width: 100%;
 }
 
+.grey {
+  color: $grey;
+}
+
+.date-added {
+  float: right;
+  position: relative;
+  top: -6px;
+  font-size: 80%;
+}
+
+.big {
+  font-size: 120%;
+  font-weight: bold;
+}
+
 // Events styles
 .event-comment {
   top: .5rem;
   position: relative;
-  color: $grey;
 }
-  
+
 .comment-form {
   width: 40%;
 }

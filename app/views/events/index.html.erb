@@ -10,12 +10,21 @@
     <div class="column">
         <div class="card">
           <div class="card-divider">
-             <h4> <%= event.category.name %> </h4>
+            <div>
+              <span class="big"> <%= event.category.name %> </span>
+            </div>
+            <span class="date-added grey"> Added <%= time_ago_in_words(event.created_at) %> ago </span>
           </div>
           <div class="card-section">
-            <p> <%= "#{event.description.to_s[0..50]}..." %> </p>
+            <p> 
+              <% if event.description.to_s.length <= 40 %>
+                <%= event.description %>
+              <% else %>
+                <%= "#{event.description.to_s[0..40]}..." %>
+              <% end %>
+            </p>
             <div> 
-              <span class="event-comment">
+              <span class="event-comment grey">
               <%= event.comments.count.to_s + ' ' + 'comments'.pluralize(event.comments.count) %>
               </span>
               <span class="top-bar-right">
