@@ -12,19 +12,21 @@
  *
  *= require_tree .
  *= require_self
- *= require foundation_and_overrides
-
  */
 
-@import "foundation_and_overrides";
-@import 'foundation-icons';
+@import "materialize/components/color";
+$primary-color: hotpink !default;
+$secondary-color: #17BEBB !default;
+@import 'materialize';
 
-$grey: #555;
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+$grey: #666;
 
 // General Styles
 
 .container {
-  padding: 0 4rem 0 4rem;
+  width: 85% !important;
 }
 
 .center {
@@ -35,32 +37,42 @@ $grey: #555;
   padding-right: 0;
 }
 
+.search-menu {
+  width: 36% !important;
+  position: relative;
+  left: 13%;
+  input {
+    max-width: 100%;
+  }
+}
+
 .field_with_errors {
   width: 100%;
 }
 
-.grey {
+.text-grey {
   color: $grey;
 }
 
-.date-added {
+.float-right {
   float: right;
-  position: relative;
-  top: -6px;
-  font-size: 80%;
 }
 
 .big {
-  font-size: 120%;
+  font-size: 140%;
   font-weight: bold;
 }
 
-// Events styles
-.event-comment {
-  top: .5rem;
-  position: relative;
+.row {
+  margin-bottom: 5px !important;
 }
 
-.comment-form {
-  width: 40%;
+// Override Materialize
+.material-icons {
+  font-size: 1rem;
+  padding: .3rem;
+}
+
+.modal {
+  padding: .5rem;
 }

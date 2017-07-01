@@ -1,4 +1,4 @@
 <%= simple_form_for comment do |f| %>
-  <%= f.input :comment, label: "Update Comment" %>
-  <%= f.button :submit %>
+  <%= f.text_field :comment, label: "Update Comment" %>
+  <%= f.button :submit, "Update", class: "btn" %>
 <% end %>

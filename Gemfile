@@ -25,6 +25,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
+
+gem 'jquery-turbolinks'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
@@ -34,14 +37,11 @@ gem 'pg'
 # devise gem for authentication
 gem 'devise'
 
-# use foundation for frontend UI
-gem 'foundation-rails'
-
 # use simple_form to render forms
 gem 'simple_form'
 
-# add foundation icons
-gem 'foundation-icons-sass-rails'
+# use materialcss
+gem 'materialize-sass'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

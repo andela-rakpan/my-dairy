@@ -1,6 +1,9 @@
-<h1>Editing Event</h1>
+<div class="my-container">
+  <h4>Edit Event</h4>
+</div>
 
-<%= render 'form', event: @event %>
+<%= render 'form', event: @event, created_category: {} %>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<div class="my-container">
+  <%= link_to 'Back', events_path %>
+</div>

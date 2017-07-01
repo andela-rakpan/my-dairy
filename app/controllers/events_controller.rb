@@ -74,6 +74,14 @@ class EventsController < ApplicationController
     end
 
     def get_user_events
-      current_user.events.order(created_at: :desc)
+      if params["event_date"].nil?
+        begin_date = Date.today
+      else
+        begin_date = params["event_date"].to_date
+      end
+      end_date = begin_date + 1 
+      current_user.events.where(
+        'created_at >= ? and created_at < ?', begin_date.to_s, end_date.to_s
+      ).order(created_at: :desc)
     end
 end

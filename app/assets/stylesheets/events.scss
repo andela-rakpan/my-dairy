@@ -1,3 +1,80 @@
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// colors
+$light_grey: #ccc;
+$grey: #666;
+
+
+// Homepage 
+
+.comment-form {
+  width: 40%;
+  textarea {
+    border: 1px solid #ccc !important;
+    border-radius: .2rem;
+    padding: .5rem;
+  }
+}
+
+// Event page
+.my-container {
+  width: 65%;
+  margin: 0 auto;
+}
+
+.category {
+  padding: 0 0.3rem 0 1rem !important;
+  input.select-dropdown {
+    border: 1px solid #ccc !important;
+    height: 2rem !important;
+  }
+}
+
+.my-card {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  background-color: floralwhite;
+  .content {
+    color: $grey;
+    min-height: 3.5rem;
+    padding-top: .5rem;
+  }
+  .category-name {
+    color: hotpink;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0rem 0rem 1.1rem #ccc ;
+  -webkit-box-shadow: 0rem 0rem 1.1rem #ccc ;
+  -moz-box-shadow: 0rem 0rem 1.1rem #ccc ;
+}
+
+.comment-input {
+  border: 1px solid $light_grey !important;
+  padding: .2rem !important;
+  height: 2rem !important;
+  width: 99% !important;
+}
+
+.comment {
+  border-radius: .5rem;
+  padding: .5rem 0 0.02rem .5rem;
+  margin-bottom: 1rem;
+}
+
+.date-added {
+  font-size: 75%;
+  color: $grey;
+}
+
+input[type=text] {
+  border: 1px solid $light_grey !important;
+  padding: .2rem !important;
+  height: 2rem !important;
+  width: 99% !important;
+}

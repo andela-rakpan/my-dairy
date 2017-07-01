@@ -3,41 +3,33 @@
 <h3>Events</h3>
 <p> <%= link_to "Manage Categories", categories_path %> </p>
 
-<%= render "form", event: Event.new %>
+<%= render "form", event: Event.new, created_category: flash[:category] %>
 
-<div class="row small-up-2 medium-up-3">
+<div class="row">
+  <p> You have <%= @events.count %> <%= 'event'.pluralize(@events.count) %> today </p>
   <% @events.each do |event| %>
-    <div class="column">
-        <div class="card">
-          <div class="card-divider">
-            <div>
-              <span class="big"> <%= event.category.name %> </span>
+    <div class="col s4">
+        <div class="my-card box-shadow">
+            <div class="header">
+                <span class="category-name big"> <%= event.category.name %> </span>
+                <span class="float-right date-added"> Added <%= time_ago_in_words(event.created_at) %> ago </span>
             </div>
-            <span class="date-added grey"> Added <%= time_ago_in_words(event.created_at) %> ago </span>
-          </div>
-          <div class="card-section">
-            <p> 
+
+            <div class="content">
               <% if event.description.to_s.length <= 40 %>
                 <%= event.description %>
               <% else %>
-                <%= "#{event.description.to_s[0..40]}..." %>
+                <%= "#{event.description.to_s[0..80]}..." %>
               <% end %>
-            </p>
-            <div> 
-              <span class="event-comment grey">
-              <%= event.comments.count.to_s + ' ' + 'comments'.pluralize(event.comments.count) %>
-              </span>
-              <span class="top-bar-right">
-                <ul class="menu">
-                  <li> <%= link_to '', event, class: "fi-magnifying-glass" %> </li>
-                  <li> <%= link_to '', edit_event_path(event), class: "fi-pencil" %> </li>
-                  <li>
-                    <%= link_to '', event, class: "fi-x", method: :delete, data: { confirm: 'Are you sure?' } %>
-                  </li>
-                </ul>
+            </div>
+            <div class="footer"> 
+              <%= event.comments.count.to_s %> <a href="<%= event_path(event)%>" class="material-icons">message</a>
+              <span class="float-right">
+                  <a href="<%= event_path(event)%>" class="tiny material-icons">zoom_in</a>
+                  <a href="<%= edit_event_path(event)%>" class="tiny material-icons">create</a>
+                  <a href="<%= event_path(event)%>" class="tiny material-icons"  data-confirm="Are you sure?" rel="nofollow" data-method="delete">clear</a>
               </span>
             </div>
-          </div>
         </div>
     </div>
   <% end %>

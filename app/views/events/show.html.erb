@@ -1,54 +1,61 @@
-<div class="container">
+<div class="my-container">
   <p id="notice"><%= notice %></p>
 
   <div class="row">
-    <div class="card">
-      <div class="card-section">
-        <div class="card-divider">
-          <div>
-            <span class="big"> <%= @event.category.name %> </span>
-          </div>
-          <span class="date-added grey"> Added <%= time_ago_in_words(@event.created_at) %> ago </span>
+    <div class="col s12">
+      <div class="my-card box-shadow">
+        <div class="header">
+          <span class="category-name big"> <%= @event.category.name %> </span>
+          <span class="date-added float-right"> <%= @event.created_at.strftime('%A, %d %b %Y %l:%M %p') %> ~ <%= time_ago_in_words(@event.created_at) %> ago </span>
         </div>
-      </div>
-      <div class="card-section">
-        <p>
-          <strong>Description:</strong>
-          <%= @event.description %>
-        </p>
 
-        <p>
-          <strong>Category:</strong>
-          <%= @event.category.name %>
-        </p>
+        <div class="content">
+          <%= @event.description %>
+        </div>
+
+        <div class="footer">
+          <span class="">
+              <a href="<%= edit_event_path(@event)%>" class="material-icons">create</a>
+              <a href="<%= event_path(@event)%>" class="material-icons"  data-confirm="Are you sure?" rel="nofollow" data-method="delete">clear</a>
+          </span>
+        </div>
       </div>
     </div>
   </div>
+
   <%= form_for Comment.new do |f| %>
-    <%= f.text_field :comment, placeholder: "Comment" %>
+    <%= f.text_field :comment, placeholder: "Add Comment", class: "comment-input" %>
     <%= hidden_field_tag("comment[event_id]", @event.id) %>
-    <%= f.submit "Add Comment", class: "button" %>
+    <%= hidden_field_tag(f.submit)%>
   <% end %>
   
-  <h4> <%= @comments.count%> <%= 'comment'.pluralize(@comments.count) %> </h4>
+  <h5> <%= @comments.count%> <%= 'comment'.pluralize(@comments.count) %> </h5>
 
-  <% @comments.each do |comment| %>
-    <p> 
-        <% comment.comment.split(' ').each do |word| %>
-          <% if uri?(word) %>
-            <a href="<%= word %>" target="_"> <%= word %> </a>
-          <% else %>
-            <%= word %>
-          <% end %>
-        <% end %>
-        &nbsp;
-        <%= link_to '', edit_comment_path(comment), class: "fi-pencil" %> &nbsp;
-        <%= link_to '', comment, class: "fi-x", method: :delete %>
-    </p>
+  <div class="comments">
+    <% @comments.each do |comment| %>
+      <div class="comment box-shadow">
+        <div class="row">
+          <div class="col s12">
+            <% comment.comment.split(' ').each do |word| %>
+              <% if uri?(word) %>
+                <a href="<%= word %>" target="_"> <%= word %> </a>
+              <% else %>
+                <%= word %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="col s12 text-grey">
+            <span class="date-added"> <%= comment.created_at.strftime('%I:%M %P') %> ~ <%= time_ago_in_words(comment.created_at) %> ago </span>
+            <span style="float: right">
+              <a href="<%= edit_comment_path(comment)%>" class="material-icons">create</a>
+              <a href="<%= comment_path(comment)%>" class="material-icons" data-method="delete">clear</a>
+            <span>
+          </div>
+        </div>
+      </div>
 
-  <% end %>
+    <% end %>
+  </div>
 
-
-  <%= link_to 'Edit', edit_event_path(@event) %> |
-  <%= link_to 'Back', events_path %>
+  <%= link_to 'Back', events_path,  class: "btn" %>
 </div>
